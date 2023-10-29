@@ -1,0 +1,19 @@
+{
+  "id": "point-buy",
+  "title": "Point Buy Ability Calculator",
+  "description": "The standard point buy method for determining character abilities.",
+  "authors": [
+    {
+		"name": "flying-squad"
+    }
+  ],
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11"
+  },
+  "esmodules": ["point-buy.js"],
+  "url": "https://github.com/flyingsquad/point-buy",
+  "manifest": "https://raw.githubusercontent.com/flyingsquad/point-buy/main/module.json",
+  "download": "https://github.com/flyingsquad/point-buy/archive/refs/tags/v1.0.0.zip"
+}
