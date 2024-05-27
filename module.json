@@ -20,11 +20,12 @@
         "compatibility": {
           "minimum": "3.1",
           "maximum": "3.3"
-      }
+		}
+	  }
 	]
   },  
   "url": "https://github.com/flyingsquad/point-buy",
   "manifest": "https://raw.githubusercontent.com/flyingsquad/point-buy/main/module.json",
-  "version": "1.0.3",
-  "download": "https://github.com/flyingsquad/point-buy/archive/refs/tags/v1.0.3.zip"
+  "version": "1.0.4",
+  "download": "https://github.com/flyingsquad/point-buy/archive/refs/tags/v1.0.4.zip"
 }
