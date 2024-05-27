@@ -23,7 +23,7 @@
 		}
 	  }
 	]
-  },  
+  },
   "url": "https://github.com/flyingsquad/point-buy",
   "manifest": "https://raw.githubusercontent.com/flyingsquad/point-buy/main/module.json",
   "version": "1.0.4",
