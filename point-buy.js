@@ -15,104 +15,7 @@ export class PointBuy {
 	};
 	choose = "";
 
-	isRace(name) {
-		let info = '';
-		switch (name) {
-		case 'Dark Elf':
-		case 'Drow':
-			info = "Charisma: +1";
-			this.racialBonus['Charisma'] += 1;
-			break;
-		case 'Dragonborn':
-			this.racialBonus['Strength'] += 2;
-			this.racialBonus['Charisma'] += 1;
-			info = "Strength: +2, Charisma: +1";
-			break;
-		case 'Dwarf':
-			this.racialBonus['Constitution'] += 2;
-			info = "Constitution: +2";
-			break;
-		case 'Elf':
-			info = "Dexterity: +2";
-			this.racialBonus['Dexterity'] += 2;
-			break;
-		case 'Forest Gnome':
-			info = "Dexterity: +1";
-			this.racialBonus['Dexterity'] += 1;
-			break;
-		case 'Gnome':
-			info = "Intelligence: +2";
-			this.racialBonus['Intelligence'] += 2;
-			break;
-		case 'Half-Elf':
-			info = "Charisma: +2, two other different abilities: +1, which you must set in <b>Racial Bonus</b>";
-			this.racialBonus['Charisma'] += 2;
-			break;
-		case 'Half-Orc':
-		case 'Orkney':
-			this.racialBonus['Strength'] += 2;
-			this.racialBonus['Constitution'] += 1;
-			info = "Strength: +2, Constitution: +1";
-			break;
-		case 'Halfling':
-			info = "Dexterity: +2";
-			this.racialBonus['Dexterity'] += 2;
-			break;
-		case 'High Elf':
-			info = 'Intelligence: +1';
-			this.racialBonus['Intelligence'] += 1;
-			break;
-		case 'Hill Dwarf':
-			this.racialBonus['Wisdom'] += 1;
-			info = 'Wisdom: +1';
-			break;
-		case 'Celt':
-		case 'Human':
-			info = 'All abilities: +1';
-			this.racialBonus['Strength'] += 1;
-			this.racialBonus['Dexterity'] += 1;
-			this.racialBonus['Constitution'] += 1;
-			this.racialBonus['Intelligence'] += 1;
-			this.racialBonus['Wisdom'] += 1;
-			this.racialBonus['Charisma'] += 1;
-			break;
-		case 'Lightfoot Halfling':
-			this.racialBonus['Charisma'] += 1;
-			info = "Charisma: +1";
-			break;
-		case 'Mountain Dwarf':
-			this.racialBonus['Strength'] += 2;
-			info = "Strength: +2";
-			break;
-		case 'Rock Gnome':
-			this.racialBonus['Constitution'] += 1;
-			info = "Constitution: +1";
-			break;
-		case 'Stout Halfling':
-			this.racialBonus['Constitution'] += 1;
-			info = "Constitution: +1";
-		case 'Tiefling':
-			info = "Intelligence: +1, Charisma: +2";
-			this.racialBonus['Charisma'] += 2;
-			this.racialBonus['Intelligence'] += 1;
-			break;
-		case 'Galatai':
-		case 'Variant Human':
-			info = "Choose two different abilities: +1, which you must set in <b>Racial Bonus</b>";
-			break;
-		case 'Wood Elf':
-			info = 'Wisdom: +1';
-			this.racialBonus['Wisdom'] += 1;
-			break;
-		default:
-			return false;
-		}
-		if (this.choose)
-			this.choose += '<br>';
-		this.choose += `<strong>${name}</strong> ${info}`;
-		return true;
-	}
-	
+
 	calcCost(html) {
 		let usedPoints = 0;
 		for (const ability in this.abilities) {
@@ -188,13 +91,49 @@ export class PointBuy {
 			return;
 		}
 
-		let races = this.actor.items.filter(it => it.type == 'feat' && this.isRace(it.name));
+		let race = this.actor.items.filter(it => it.type == 'race');
+		let prepend;
 
-		let prepend = '';
-
-		if (races.length == 0) {
-				prepend = `<p>There are no recognized races in Features.</p>
-				<p>If there are any racial bonuses for any abilities you will need to enter them manually in the <b>Racial Bonus</b> field for those abilities.`;
+		if (race.length == 0) {
+			prepend = `<p>There is no race on this character.</p>`;
+		} else {
+			race = race[0];
+			prepend = `<p><b>${race.name}</b>`;
+			let delim = ': ';
+			let abilities = race.system.advancement.filter(it => it.type == "AbilityScoreImprovement");
+			if (abilities.length == 0) {
+				prepend += delim + `ability score improvement data missing`;
+			} else {
+				abilities = abilities[0];
+				for (let abil in abilities.value.assignments) {
+					let a;
+					switch (abil) {
+					case 'str':
+						a = 'Strength';
+						break;
+					case 'dex':
+						a = 'Dexterity';
+						break;
+					case 'con':
+						a = 'Constitution';
+						break;
+					case 'int':
+						a = 'Intelligence';
+						break;
+					case 'wis':
+						a = 'Wisdom';
+						break;
+					case 'cha':
+						a = 'Charisma';
+						break;
+					}
+					let val = abilities.value.assignments[abil];
+					this.racialBonus[a] += val;
+					prepend += delim + `${a}: ${val}`;
+					delim = ', ';
+				}
+			}
+			prepend += `</p>\n`;
 		}
 		
 		this.abilities['Strength'] = actor.system.abilities.str.value;

@@ -13,6 +13,17 @@
     "verified": "11"
   },
   "esmodules": ["point-buy.js"],
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "3.1",
+          "maximum": "3.3"
+        }
+      }
+  },  
   "url": "https://github.com/flyingsquad/point-buy",
   "manifest": "https://raw.githubusercontent.com/flyingsquad/point-buy/main/module.json",
   "download": "https://github.com/flyingsquad/point-buy/archive/refs/tags/v1.0.0.zip"
