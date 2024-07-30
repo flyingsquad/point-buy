@@ -204,12 +204,12 @@ export class PointBuy {
 				// Check if the point allocation is valid
 
 				if (usedPoints == this.totalPoints) {
-				  actor.update({"data.abilities.str.value": this.abilities['Strength']});
-				  actor.update({"data.abilities.dex.value": this.abilities['Dexterity']});
-				  actor.update({"data.abilities.con.value": this.abilities['Constitution']});
-				  actor.update({"data.abilities.int.value": this.abilities['Intelligence']});
-				  actor.update({"data.abilities.wis.value": this.abilities['Wisdom']});
-				  actor.update({"data.abilities.cha.value": this.abilities['Charisma']});
+				  actor.update({"system.abilities.str.value": this.abilities['Strength']});
+				  actor.update({"system.abilities.dex.value": this.abilities['Dexterity']});
+				  actor.update({"system.abilities.con.value": this.abilities['Constitution']});
+				  actor.update({"system.abilities.int.value": this.abilities['Intelligence']});
+				  actor.update({"system.abilities.wis.value": this.abilities['Wisdom']});
+				  actor.update({"system.abilities.cha.value": this.abilities['Charisma']});
 
 				} else {
 				  // Show an error message if the point allocation is invalid
