@@ -9,7 +9,7 @@
   ],
   "compatibility": {
     "minimum": "11",
-    "verified": "11"
+    "verified": "12"
   },
   "esmodules": ["point-buy.js"],
   "relationships": {
@@ -19,13 +19,13 @@
         "type": "system",
         "compatibility": {
           "minimum": "3.1",
-          "maximum": "3.3"
+          "maximum": "3.4"
 		}
 	  }
 	]
   },
   "url": "https://github.com/flyingsquad/point-buy",
   "manifest": "https://raw.githubusercontent.com/flyingsquad/point-buy/main/module.json",
-  "version": "1.0.4",
-  "download": "https://github.com/flyingsquad/point-buy/archive/refs/tags/v1.0.4.zip"
+  "version": "1.0.5",
+  "download": "https://github.com/flyingsquad/point-buy/archive/refs/tags/v1.0.5.zip"
 }
